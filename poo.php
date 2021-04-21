@@ -46,6 +46,7 @@ class Alumno extends Persona{
 
 }
 
+
 class Docente extends Persona{
 
     public $especialidad;
