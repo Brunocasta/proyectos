@@ -74,12 +74,13 @@ class Carrito
 
     private $cliente;
     private $aProductos;
-    private $subtotal;
+    private $subTotal;
     private $total;
 
     public function __construct(){
         $this->aProductos = array();
-        $this->subtotal = 0.0;
+        $this->subTotal = 0.0;
+        $this->subTotalIva= 0.0;
         $this->total = 0.0;
     }
 
@@ -98,15 +99,47 @@ class Carrito
         $this->aProductos[] = $producto;
     }
 
-    public function imprimirTicket()
-    {
-        echo "Fecha =";
-        "Cliente= " . $this->cliente->nombre . "<br>";
-        "Productos= " . $this->aProductos. "<br>";
-        echo "Subtotal = " . $this->subtotal . "<br>";
-        echo "Total= " . $this->total . "<br>";
+    public function imprimirTicket(){
+        echo "<table class='table table-hover border'>";
+        echo "<tr> <th colspan='2' class='text-center'>ECO MARKET</th> </tr>
+        <tr>
+            <th>Fecha:</th>
+            <td>"  .date('d/m/Y') ."</td>
+        </tr>
+        <tr>
+            <th>DNI:</th>
+            <td>" . $this->cliente->dni . "</td>
+        </tr>
+        <tr>
+            <th>Nombre:</th>
+            <td>" . $this->cliente->nombre . " </td>
+        </tr>
+        <tr>
+            <th colspan='2'>Productos:</th>
+        </tr>";
+        foreach($this->aProductos as $producto){
+            echo "<tr>
+                        <td>". $producto->nombre ."</td>
+                        <td>$".number_format($producto->precio, 2, ",", ".")."</td>
+            
+            </tr>";
+            $this->subTotal+= $producto ->precio;
+        }
+        $this->total= $this->subTotal * 1.21;
+        echo "<tr>
+            <th>Subtotal s/IVA:</th>
+            <td>$". number_format($this->subTotal, 2, ",", ".") ."</td>
+        </tr>
+        <tr>
+            <th>TOTAL:</th>
+            <td>$". number_format($this->total, 2, ",", ".")."</td>
+        </tr>
+
+       
+    </table>";
     }
 }
+
 //Programa
 $cliente1 = new Cliente();
 $cliente1->dni = "34765456";
@@ -138,7 +171,7 @@ $carrito->cliente = $cliente1;
 //print_r($carrito);
 $carrito->cargarProducto($producto1);
 $carrito->cargarProducto($producto2);
-$carrito->imprimirTicket(); //Imprime el ticket de la compra
+ //Imprime el ticket de la compra
 
 ?>
 
@@ -156,36 +189,8 @@ $carrito->imprimirTicket(); //Imprime el ticket de la compra
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-12 ">
-                <table class="table table-hover border">
-                    <tr>
-                        <td>ECO MARKET</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha:</td>
-                        <td><?php echo date("d/m/Y") ?></td>
-                    </tr>
-                    <tr>
-                        <td>DNI:</td>
-                        <td><?php  $this->cliente->dni ?></td>
-                    </tr>
-                    <tr>
-                        <td>Nombre:</td>
-                        <td><?php  ?></td>
-                    </tr>
-                    <tr>
-                        <td>Productos:</td>
-                        <td><?php ?></td>
-                    </tr>
-                    <tr>
-                        <td>Subtotal:</td>
-                        <td><?php ?><?php ?></td>
-                    </tr>
-                    <tr>
-                        <th>TOTAL:</th>
-                        <td><?php ?></td>
-                    </tr>
-                </table>
+            <div class="col-6 mt-5">
+           <?php $carrito->imprimirTicket(); ?>
 
             </div>
         </div>
