@@ -69,8 +69,7 @@ class Producto
         echo "Iva= " . $this->iva . "<br>";
     }
 }
-class Carrito
-{
+class Carrito{
 
     private $cliente;
     private $aProductos;

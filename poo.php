@@ -1,7 +1,7 @@
 <?php
 
 class Persona{
-    protected $dni;
+    protected  $dni;
     protected  $nombre;
     protected  $nacionalidad;
     protected  $edad;
