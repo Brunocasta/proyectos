@@ -60,10 +60,27 @@ class Alumno extends Persona
 
     public function setFichaMedica($peso, $altura, $aptoFisico)
     {
-        //TODO: poner nombres entendibles a los parametros y asignarlas
-        $this->peso = $peso;
-        $this->altura = $altura;
-        $this->aptoFisico = $aptoFisico;
+        echo "<table class='table table-hover border'>";
+        echo "<tr><th colspan='2' class='text-center' >Ficha Medica</th></tr>
+            <tr><th>Nombre:</th>
+            <td>". $this->nombre. "</td>
+            </tr>
+            <tr>
+            <tr><th>Peso:</th>
+            <td>".$this->peso = $peso. "</td>
+            </tr>
+            <tr>
+            <th>Altura:</th>
+            <td>".$this->altura = $altura."</td>
+            </tr>
+            <tr>
+            <th>Apto Fisico:</th>";
+            if($this->aptoFisico=$aptoFisico > 0){
+           echo "<td>'Tiene apto Fisico'</td>
+           </tr>
+            </table>";
+            }
+        
     }
 }
 class Entrenador extends Persona
@@ -104,7 +121,7 @@ class Clase
         $this->$propiedad = $valor;
     }
 
-    public function asignarEntrenador(Entrenador $entrenador)
+    public function asignarEntrenador($entrenador)
     {
         $this->entrenador = $entrenador->nombre;
         $this->entrenador = $entrenador->correo;
@@ -112,7 +129,7 @@ class Clase
         $this->entrenador = $entrenador->nombre;
     }
 
-    public function inscribirAlumno(Alumno $estudiante)
+    public function inscribirAlumno($estudiante)
     {
         $this->aAlumnos[] = $estudiante;
     }
@@ -129,14 +146,14 @@ class Clase
                 <th>Entrenador:</th>
             <td>" . $this->entrenador . "</td>
             </tr>
-            <tr><th colspan='3'>Alumnos:</th>";
+            <tr><th>Alumnos:</th>";
         foreach ($this->aAlumnos as $alumno) {
 
-            echo "<tr><td>" . $alumno->nombre . "</td><br>
+            echo "<tr><td colspan='2'>" . $alumno->nombre . "</td><br>
                 </tr>
          
         </table>";
-        }  
+        }
     }
 }
 //programa
@@ -144,11 +161,11 @@ $entrenador1 = new Entrenador("34987789", "Miguel Ocampo", "miguel@mail.com", "1
 $entrenador2 = new Entrenador("28987589", "Andrea Zarate", "andrea@mail.com", "11768654");
 
 $alumno1 = new Alumno("407876557", "Dante Montera", "dante@mail.com", "1145632457", "1997-08-28");
-$alumno1->setfichaMedica("90", "1.78", "1");
+$alumno1->setFichaMedica("90", "1.78", "1");
 $alumno1->presentismo = 78;
 
 $alumno2 = new Alumno("467666547", "Dario Turchi", "dario@mail.com", "1145633457", "1986-11-21");
-$alumno2->setfichaMedica("73", "1.68", "0");
+$alumno2->setFichaMedica("73", "1.68", "0");
 $alumno2->presentismo = 68;
 
 $alumno3 = new Alumno("39765454", "Facundo Fagnano", "facundo@mail.com", "1145632457", "1993-02-06");
@@ -195,7 +212,12 @@ $clase2->imprimirListado();
     <div class="container">
         <div class="row">
             <div class="col-4 mt-5">
-                <?php $clase1->imprimirListado($entrenador1); ?>
+
+            <?php $clase2->imprimirListado();?>
+            <?php $clase1->imprimirListado();?>
+            
+
+
             </div>
         </div>
 
