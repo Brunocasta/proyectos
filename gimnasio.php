@@ -80,10 +80,10 @@ class Alumno extends Persona
             <td>" . $this->altura . "mts</td>";
 
         if ($this->aptoFisico > 0) {
-            echo "<td colspan='4'>'Tiene apto Fisico'</td>
+            echo "<td colspan='4'>Tiene apto Fisico</td>
           ";
         } else {
-            echo "<td colspan='4' >'NO Tiene apto Fisico'</td>
+            echo "<td colspan='4' >No tiene apto Fisico</td>
                ";
         }
     }
@@ -148,7 +148,7 @@ class Clase
 
     public function imprimirListado()
     {
-        echo "<table class='table table-hover border'>";
+        echo "<table class='table table-striped table-dark'>";
         echo "<tr><th colspan='10' class='text-center' >CLASES</th></tr>
             <tr>    
                 <th colspan='2'>Nombre:</th>
@@ -167,7 +167,7 @@ class Clase
             <th>Correo</th>
             <th>Peso</th>
             <th>Altura</th>
-            <th colspan='4'>Apto fisico</th>
+            <th colspan='4'>Apto Físico</th>
            </tr>";
         foreach ($this->aAlumnos as $alumno) {
             echo  "<tr>
