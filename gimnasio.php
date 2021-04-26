@@ -149,7 +149,7 @@ class Clase
     public function imprimirListado()
     {
         echo "<table class='table table-hover border'>";
-        echo "<tr><th colspan='8' class='text-center' >CLASES</th></tr>
+        echo "<tr><th colspan='10' class='text-center' >CLASES</th></tr>
             <tr>    
                 <th colspan='2'>Nombre:</th>
             <td colspan='8'>" . $this->nombre . "</td>
