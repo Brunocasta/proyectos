@@ -262,7 +262,7 @@ $listadoClases->cargarClase($clase2);
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-4 mt-5">
+            <div class="col-6 my-5">
 
              <?php  $listadoClases->imprimirClases();
                   ?> 
