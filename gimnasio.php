@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 class Persona
 {
-    public $nombre;
+    protected $nombre;
     protected $dni;
     protected $correo;
     protected $celular;
@@ -62,27 +62,30 @@ class Alumno extends Persona
         $this->peso = $peso;
         $this->altura = $altura;
         $this->aptoFisico = $aptoFisico;
-        
     }
     public function ImprimirAlumno()
     {
         echo "
             
-            <td>". $this->nombre. "</td>
+            <td>" . $this->nombre . "</td>
+
+            <td>" . $this->celular . "</td>
+
+            <td>" . $this->dni . "</td>
+
+            <td>" . $this->correo . "</td>
            
-            <td>".$this->peso. "</td>
+            <td>" . $this->peso . "kg</td>
            
-            <td>".$this->altura."</td>";
-          
-            if($this->aptoFisico > 0){
-           echo "<td>'Tiene apto Fisico'</td>
+            <td>" . $this->altura . "mts</td>";
+
+        if ($this->aptoFisico > 0) {
+            echo "<td colspan='4'>'Tiene apto Fisico'</td>
           ";
-            }
-        else {
-                echo "<td>'NO Tiene apto Fisico'</td>
+        } else {
+            echo "<td colspan='4' >'NO Tiene apto Fisico'</td>
                ";
-                 }
-        
+        }
     }
 }
 class Entrenador extends Persona
@@ -95,7 +98,7 @@ class Entrenador extends Persona
         $this->dni = $dni;
         $this->correo = $correo;
         $this->celular = $celular;
-        $this->aClases=array();
+        $this->aClases = array();
     }
 
     public function __get($propiedad)
@@ -115,8 +118,10 @@ class Clase
     private $entrenador;
     private $aAlumnos;
 
+
     public function __construct()
     {
+
         $this->nombre;
         $this->entrenador;
         $this->aAlumnos = array();
@@ -144,42 +149,44 @@ class Clase
     public function imprimirListado()
     {
         echo "<table class='table table-hover border'>";
-        echo "<tr><th colspan='4' class='text-center' >Listado de clases</th></tr>
+        echo "<tr><th colspan='8' class='text-center' >CLASES</th></tr>
             <tr>    
                 <th colspan='2'>Nombre:</th>
-            <td colspan='2'>" . $this->nombre . "</td>
+            <td colspan='8'>" . $this->nombre . "</td>
             </tr>
             <tr>
                 <th colspan='2'>Entrenador:</th>
-            <td colspan='2'>" . $this->entrenador . "</td>
+            <td colspan='8' >" . $this->entrenador . "</td>
             </tr>
-            <tr><th  colspan='4'  class='text-center'>Alumnos</th></tr>
+            <tr><th  colspan='10'  class='text-center'>Alumnos</th></tr>
 
-           
-            
-            <tr>
+           <tr>
             <th>Nombre</th>
+            <th>Celular</th>
+            <th>DNI</th>
+            <th>Correo</th>
             <th>Peso</th>
             <th>Altura</th>
-            <th>Apto Fisico</th>
+            <th colspan='4'>Apto fisico</th>
            </tr>";
-           foreach ($this->aAlumnos as $alumno) {
+        foreach ($this->aAlumnos as $alumno) {
             echo  "<tr>
-                 ".$alumno->ImprimirAlumno()." 
+                 " . $alumno->ImprimirAlumno() . " 
                 
                 </tr>";
         }
         "</tr>
         </table>";
-        
     }
 }
 
-class ListadoClases{
+class ListadoClases
+{
 
     private $aClases;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->aClases = array();
     }
 
@@ -204,8 +211,6 @@ class ListadoClases{
             $clase->imprimirListado();
         }
     }
-
-   
 }
 //programa
 $entrenador1 = new Entrenador("34987789", "Miguel Ocampo", "miguel@mail.com", "11678634");
@@ -262,10 +267,12 @@ $listadoClases->cargarClase($clase2);
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-6 my-5">
 
-             <?php  $listadoClases->imprimirClases();
-                  ?> 
+        <h1 class="my-4 text-center">Listado de Clases del Gimnasio</h1>
+            <div class="col-10  my-5">
+
+                <?php $listadoClases->imprimirClases();
+                ?>
             </div>
         </div>
 
