@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 class Persona
 {
-    protected $nombre;
+    public $nombre;
     protected $dni;
     protected $correo;
     protected $celular;
@@ -57,29 +57,31 @@ class Alumno extends Persona
     {
         $this->$propiedad = $valor;
     }
-
-    public function setFichaMedica($peso, $altura, $aptoFisico)
+    public function SetFichaMedica($peso, $altura, $aptoFisico)
     {
-        echo "<table class='table table-hover border'>";
-        echo "<tr><th colspan='2' class='text-center' >Ficha Medica</th></tr>
-            <tr><th>Nombre:</th>
+        $this->peso = $peso;
+        $this->altura = $altura;
+        $this->aptoFisico = $aptoFisico;
+        
+    }
+    public function ImprimirAlumno()
+    {
+        echo "
+            
             <td>". $this->nombre. "</td>
-            </tr>
-            <tr>
-            <tr><th>Peso:</th>
-            <td>".$this->peso = $peso. "</td>
-            </tr>
-            <tr>
-            <th>Altura:</th>
-            <td>".$this->altura = $altura."</td>
-            </tr>
-            <tr>
-            <th>Apto Fisico:</th>";
-            if($this->aptoFisico=$aptoFisico > 0){
+           
+            <td>".$this->peso. "</td>
+           
+            <td>".$this->altura."</td>";
+          
+            if($this->aptoFisico > 0){
            echo "<td>'Tiene apto Fisico'</td>
-           </tr>
-            </table>";
+          ";
             }
+        else {
+                echo "<td>'NO Tiene apto Fisico'</td>
+               ";
+                 }
         
     }
 }
@@ -87,6 +89,14 @@ class Entrenador extends Persona
 {
 
     private $aClases;
+    public function __construct($dni, $nombre, $correo, $celular)
+    {
+        $this->nombre = $nombre;
+        $this->dni = $dni;
+        $this->correo = $correo;
+        $this->celular = $celular;
+        $this->aClases=array();
+    }
 
     public function __get($propiedad)
     {
@@ -121,11 +131,8 @@ class Clase
         $this->$propiedad = $valor;
     }
 
-    public function asignarEntrenador($entrenador)
+    public function asignarEntrenador(Entrenador $entrenador)
     {
-        $this->entrenador = $entrenador->nombre;
-        $this->entrenador = $entrenador->correo;
-        $this->entrenador = $entrenador->celular;
         $this->entrenador = $entrenador->nombre;
     }
 
@@ -137,24 +144,68 @@ class Clase
     public function imprimirListado()
     {
         echo "<table class='table table-hover border'>";
-        echo "<tr><th colspan='2' class='text-center' >Listado</th></tr>
+        echo "<tr><th colspan='4' class='text-center' >Listado de clases</th></tr>
             <tr>    
-                <th>Nombre:</th>
-            <td>" . $this->nombre . "</td>
+                <th colspan='2'>Nombre:</th>
+            <td colspan='2'>" . $this->nombre . "</td>
             </tr>
             <tr>
-                <th>Entrenador:</th>
-            <td>" . $this->entrenador . "</td>
+                <th colspan='2'>Entrenador:</th>
+            <td colspan='2'>" . $this->entrenador . "</td>
             </tr>
-            <tr><th>Alumnos:</th>";
-        foreach ($this->aAlumnos as $alumno) {
+            <tr><th  colspan='4'  class='text-center'>Alumnos</th></tr>
 
-            echo "<tr><td colspan='2'>" . $alumno->nombre . "</td><br>
-                </tr>
-         
+           
+            
+            <tr>
+            <th>Nombre</th>
+            <th>Peso</th>
+            <th>Altura</th>
+            <th>Apto Fisico</th>
+           </tr>";
+           foreach ($this->aAlumnos as $alumno) {
+            echo  "<tr>
+                 ".$alumno->ImprimirAlumno()." 
+                
+                </tr>";
+        }
+        "</tr>
         </table>";
+        
+    }
+}
+
+class ListadoClases{
+
+    private $aClases;
+
+    public function __construct(){
+        $this->aClases = array();
+    }
+
+    public function __get($propiedad)
+    {
+        return $this->$propiedad;
+    }
+
+    public function __set($propiedad, $valor)
+    {
+        $this->$propiedad = $valor;
+    }
+
+    public function cargarClase($clase)
+    {
+        $this->aClases[] = $clase;
+    }
+
+    public function imprimirClases()
+    {
+        foreach ($this->aClases as $clase) {
+            $clase->imprimirListado();
         }
     }
+
+   
 }
 //programa
 $entrenador1 = new Entrenador("34987789", "Miguel Ocampo", "miguel@mail.com", "11678634");
@@ -176,7 +227,7 @@ $alumno4 = new Alumno("41687536", "Gaston Aguilar", "gaston@mail.com", "11456324
 $alumno4->setFichaMedica("70", "1.69", "0");
 $alumno4->presentismo = 98;
 
-
+$listadoClases = new ListadoClases();
 //clases
 $clase1 = new Clase();
 $clase1->nombre = "Funcional";
@@ -184,7 +235,7 @@ $clase1->asignarEntrenador($entrenador1);
 $clase1->inscribirAlumno($alumno1);
 $clase1->inscribirAlumno($alumno3);
 $clase1->inscribirAlumno($alumno4);
-$clase1->imprimirListado();
+$listadoClases->cargarClase($clase1);
 
 $clase2 = new Clase();
 $clase2->nombre = "Zumba";
@@ -192,7 +243,7 @@ $clase2->asignarEntrenador($entrenador2);
 $clase2->inscribirAlumno($alumno1);
 $clase2->inscribirAlumno($alumno2);
 $clase2->inscribirAlumno($alumno3);
-$clase2->imprimirListado();
+$listadoClases->cargarClase($clase2);
 
 
 ?>
@@ -213,11 +264,8 @@ $clase2->imprimirListado();
         <div class="row">
             <div class="col-4 mt-5">
 
-            <?php $clase2->imprimirListado();?>
-            <?php $clase1->imprimirListado();?>
-            
-
-
+             <?php  $listadoClases->imprimirClases();
+                  ?> 
             </div>
         </div>
 
