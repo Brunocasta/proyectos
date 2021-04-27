@@ -76,16 +76,20 @@ class Alumno extends Persona
             <td>" . $this->correo . "</td>
            
             <td>" . $this->peso . "kg</td>
+            
+            <td class='text-center'>" . $this->presentismo . "</td>
            
             <td>" . $this->altura . "mts</td>";
-
-        if ($this->aptoFisico > 0) {
+            
+            if ($this->aptoFisico > 0) {
             echo "<td colspan='4'>Tiene apto Fisico</td>
           ";
         } else {
             echo "<td colspan='4' >No tiene apto Fisico</td>
                ";
+              
         }
+        
     }
 }
 class Entrenador extends Persona
@@ -166,8 +170,11 @@ class Clase
             <th>DNI</th>
             <th>Correo</th>
             <th>Peso</th>
+            <th>Presentismo</th>
+
             <th>Altura</th>
             <th colspan='4'>Apto Físico</th>
+            
            </tr>";
         foreach ($this->aAlumnos as $alumno) {
             echo  "<tr>
@@ -268,7 +275,7 @@ $listadoClases->cargarClase($clase2);
     <div class="container">
         <div class="row">
 
-        <h1 class="my-4 text-center">Listado de Clases del Gimnasio</h1>
+        <h1 class="my-5 text-center">Listado de Clases del Gimnasio</h1>
             <div class="col-10  my-5">
 
                 <?php $listadoClases->imprimirClases();
