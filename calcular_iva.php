@@ -75,6 +75,8 @@ if ($_POST) {
             </div>
             </form>
 
+            
+
             <div class="col-4 mt-5">
                 <table class="table table-hover border">
 
