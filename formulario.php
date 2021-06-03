@@ -8,10 +8,10 @@ if ($_POST) { //es postback?
     $clave = $_REQUEST["txtclave"];
 
     if ($usuario!= "" && $clave !=""){
-    header("location:") 
-    }else {
-         ;
-    }exit;
+    header("location:") ;
+   
+    }
+    
 }
 
 
