@@ -11,9 +11,6 @@ $facturacionAnual= $venta->obtenerFacturacionAnual(date('Y'));
 
 include_once("header.php"); 
 ?>
-
-
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
