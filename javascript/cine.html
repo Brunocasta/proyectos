@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let espectador1 = {
+            dni: "36876345",
+            nombre: "Matias"
+        };
+        let espectador2 = {
+            dni: "39852345",
+            nombre: "Nicolas"
+        };
+        let espectador3 = {
+            dni: "34876255",
+            nombre: "Pedro"
+        };
+        let pelicula1 = {
+            nombre: "Cruella",
+            importeEntrada: 700
+
+        }
+        let pelicula2 = {
+            nombre: "Jurassic World",
+            importeEntrada: 500
+        }
+
+        let sala = {
+            nombre: "1",
+            aPelicula:[pelicula1,pelicula2],
+            aEspectadores: [espectador1, espectador2, espectador3]
+        }
+
+        let sala = {
+            nombre: "2",
+            aPelicula:[pelicula1,pelicula2],
+            aEspectadores: [espectador1, espectador2, espectador3]
+        }
+
+        let cine = {
+            nombre: "Unicenter",
+            domicilio: "Lugones 1234",
+            aSalas: [1, 2]
+        }
+        function imprimirEstadiscticas(importeEntrada) {
+            Array.forEach(function(importeEntrada){
+                document.write(importeEntrada);
+            });
+        }
+
+       
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

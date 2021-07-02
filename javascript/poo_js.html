@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+
+var persona ={
+    edad:30,
+    nombre:"Jorge",
+    apellido:"Baez",
+    sexo:"masculino",
+    estadocivil:"soltero",
+    aPeliculas:["Volver al Futuro","Batman","Superman"],
+    cumplirAnios: function(){
+            persona.edad++;
+    },
+    comer: function(comida){
+            console.log("estoy cominedo" + comida);
+    },
+};
+console.log(persona);
+persona.comer("fideos");
+persona.cumplirAnios();
+
+
+</script>
+<body>
+    
+</body>
+</html>
