@@ -30,30 +30,38 @@
             importeEntrada: 500
         }
 
-        let sala = {
-            nombre: "1",
-            aPelicula:[pelicula1,pelicula2],
-            aEspectadores: [espectador1, espectador2, espectador3]
+        let sala1 = {
+            nombre: " sala 1",
+            aPelicula: [pelicula1, pelicula2],
+            aEspectadores: [espectador1, espectador3]
         }
 
-        let sala = {
-            nombre: "2",
-            aPelicula:[pelicula1,pelicula2],
+        let sala2 = {
+            nombre: "sala 2",
+            aPelicula: [pelicula1, pelicula2],
             aEspectadores: [espectador1, espectador2, espectador3]
         }
 
         let cine = {
             nombre: "Unicenter",
             domicilio: "Lugones 1234",
-            aSalas: [1, 2]
-        }
-        function imprimirEstadiscticas(importeEntrada) {
-            Array.forEach(function(importeEntrada){
-                document.write(importeEntrada);
-            });
-        }
+            aSalas: [salas1, salas2],
+            imprimirEstadiscticas: function () {
+                document.write(..)
+                cine.aSalas.forEach(function (sala, index) {
+                    document.write(..);
+                });
 
-       
+
+            }
+        }
+        // HACER BIEN LA IMPRESION Y RECAUDACION COMILLAS INVERTIDA ALT + 96!!!
+
+
+
+
+        cine.imprimirEstadiscticas();
+
     </script>
 </head>
 
