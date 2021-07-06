@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+               
+<script>
+
+    aProductos = new Array(
+        ["yerba", 200],
+        ["azucar", 150],
+        ["tallarines", 80],
+        ["polenta", 60]
+    );
+    function actualizarPrecios(aValores, porcentaje) {
+        return aValores.map(function (numero) {
+            return [numero[0], numero[1] * ((porcentaje/100)+1)];
+        });
+
+    }
+    function imprimirProductos(aProductos) {
+        document.write(`<main class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h1>Productos</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-hover border">
+                                    <tr>
+                                        <th>Productos</th>
+                                        <th>Precios</th>
+                                    </tr>`);
+            aProductos.forEach(function(value,index){
+                                    document.write(`<tr>
+                                        <td>${value[0]}</td>
+                                        <td>${value[1].toFixed(2)}</td>
+                                    </tr>`);
+                                });
+                              document.write(`</table>
+                            </div>
+                        </div>
+                    </main>`);
+              
+    }
+    aProductos = actualizarPrecios(aProductos,10);
+    imprimirProductos(aProductos);
+   
+</script>
+
+<body>
+
+</body>
+
+</html>

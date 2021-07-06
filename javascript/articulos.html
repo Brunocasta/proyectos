@@ -26,7 +26,7 @@ aProductos = new Array(
     }
    
 
-    function imprimirProductos(aArticulos) {
+    function imprimirProductos(aProductos) {
         document.write(`<main class="container">
         <div class="row">
             <div class="col-12 py-5">
@@ -36,8 +36,11 @@ aProductos = new Array(
         <div class="row">
             <div class="col-12">
                 <table class="table table-hover border">
-                    <tr><th>Producto</th><th>Precio</th></tr>`);
-                aProductos.forEach(function(value, index) {
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                    </tr>`);
+                aProductos.forEach(function(value,index){
                     document.write(`<tr><td>${value[0]}</td><td>${value[1].toFixed(2)}</td></tr>`);
                 });
    
